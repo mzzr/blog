@@ -1,0 +1,13 @@
+.logo {
+    display: inline-block;
+    width: 300px;
+    height: 48px;
+    line-height: 48px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 26px;
+    font-weight: bold;
+    background-color: #fff;
+    border-bottom: #ededed 1px solid;
+    vertical-align: bottom;
+}
