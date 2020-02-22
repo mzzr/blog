@@ -8,7 +8,7 @@ import go from 'react-syntax-highlighter/dist/esm/languages/hljs/go';
 import python from 'react-syntax-highlighter/dist/esm/languages/hljs/python';
 import monoBlue from 'react-syntax-highlighter/dist/esm/styles/hljs/mono-blue';
 
-import { Card } from 'antd';
+import { Card, Spin } from 'antd';
 
 SyntaxHighlighter.registerLanguage('javascript', js);
 SyntaxHighlighter.registerLanguage('python', python);
@@ -62,25 +62,32 @@ function imageRenderer(props) {
 export default function Article() {
     const { id } = useParams();
     const [data, setData] = useState();
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         fetch(process.env.PUBLIC_URL + '/articles/' + id + '.md')
         .then(response => response.text())
         .then(data => {
             setData(data);
+            setLoading(false);
         });
     }, [id])
 
-    return (
-        <div>
-            <ReactMarkdown 
-                source={data}
-                renderers={{
-                    code: codeRenderer,
-                    heading: headingRenderer,
-                    image: imageRenderer,
-                }} 
-            />
-        </div>
-    )
+    if (loading) {
+        return <Spin delay={300} size="large" style={{width: "100%", paddingTop: "calc(30vh)"}} />
+    } else {
+        return (
+            <div>
+                <ReactMarkdown 
+                    source={data}
+                    renderers={{
+                        code: codeRenderer,
+                        heading: headingRenderer,
+                        image: imageRenderer,
+                    }} 
+                />
+            </div>
+        )
+    }
+
 }

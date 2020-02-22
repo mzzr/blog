@@ -1,5 +1,6 @@
 import React from 'react';
-import { Card, Icon, Layout } from 'antd';
+import { FacebookOutlined, GithubOutlined, MailOutlined } from '@ant-design/icons';
+import { Card, Layout } from 'antd';
 const { Sider } = Layout;
 const { Meta } = Card;
 
@@ -16,9 +17,9 @@ export default function LeftSider() {
                 />
                 }
                 actions={[
-                <Icon type="github" style={iconStyle} onClick={() => window.open('https://github.com/mzzr')} />,
-                <Icon type="facebook" style={iconStyle} />,
-                <Icon type="mail" style={iconStyle}  onClick={() => window.open('mailto:0xmzzr@gmail.com')}/>,
+                <GithubOutlined style={iconStyle} onClick={() => window.open('https://github.com/mzzr')} />,
+                <FacebookOutlined style={iconStyle} />,
+                <MailOutlined style={iconStyle} onClick={() => window.open('mailto:0xmzzr@gmail.com')} />,
                 ]}
             >
                 <Meta
@@ -27,5 +28,5 @@ export default function LeftSider() {
                 />
             </Card>
         </Sider>
-    )
+    );
 }

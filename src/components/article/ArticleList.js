@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { List, Typography, Row, Col, Icon, Tag } from 'antd';
+import { ClockCircleOutlined } from '@ant-design/icons';
+import { List, Typography, Row, Col, Tag, Spin } from 'antd';
 import { Link } from "react-router-dom";
 
 const { Title, Text, Paragraph } = Typography;
@@ -30,25 +31,25 @@ function ListItem(props) {
     }
     let item = props.item
     return (
-            <div style={itemStyle} >
-                <Row>
-                    <Col span={18}>
-                        <Link to={item.href}>
-                            <Title level={3} style={{margin: 0}}>{ item.title }</Title>
-                        </Link>
-                    </Col> 
-                    <Col span={6} style={{textAlign: "right"}}>
-                        <Icon type="clock-circle" />
-                        <Text style={{fontFamily: "Georgia,serif"}}>&nbsp;{item.date}</Text>
-                    </Col>
-                </Row>
-                <TagList tags={item.tags} />
-                <Paragraph type="secondary" ellipsis={{ rows: 4}} style={{marginTop: 10}}>
-                    { item.description }
-                </Paragraph>
-            </div>
-    )   
-};
+        <div style={itemStyle} >
+            <Row>
+                <Col span={18}>
+                    <Link to={item.href}>
+                        <Title level={3} style={{margin: 0}}>{ item.title }</Title>
+                    </Link>
+                </Col> 
+                <Col span={6} style={{textAlign: "right"}}>
+                    <ClockCircleOutlined />
+                    <Text style={{fontFamily: "Georgia,serif"}}>&nbsp;{item.date}</Text>
+                </Col>
+            </Row>
+            <TagList tags={item.tags} />
+            <Paragraph type="secondary" ellipsis={{ rows: 4}} style={{marginTop: 10}}>
+                { item.description }
+            </Paragraph>
+        </div>
+    );   
+}
 
 export default function ArticleList() {
     const [data, setData] = useState([]);
@@ -63,8 +64,11 @@ export default function ArticleList() {
         });
     }, [])
 
-    return loading || (
-        <List
+    if (loading) {
+        return <Spin delay={300} size="large" style={{width: "100%", paddingTop: "calc(30vh)"}} />
+    } else {
+        return (
+            <List
             itemLayout="vertical"
             size="big"
             pagination={{
@@ -77,5 +81,6 @@ export default function ArticleList() {
             dataSource={data}
             renderItem={item => (<ListItem item={item}/>)}
         />
-    )
+        )
+    }
 }
