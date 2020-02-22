@@ -7,3 +7,8 @@
 .ant-card-actions > li {
   margin: 6px 0;
 }
+
+/* avoid scroll bar shake */
+#root {
+  padding-left: calc(100vw - 100%); 
+}

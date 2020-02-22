@@ -1,9 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import ReactMarkdown from 'react-markdown';
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { monoBlue } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+
+import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
+import js from 'react-syntax-highlighter/dist/esm/languages/hljs/javascript';
+import go from 'react-syntax-highlighter/dist/esm/languages/hljs/go';
+import python from 'react-syntax-highlighter/dist/esm/languages/hljs/python';
+import monoBlue from 'react-syntax-highlighter/dist/esm/styles/hljs/mono-blue';
+
 import { Card } from 'antd';
+
+SyntaxHighlighter.registerLanguage('javascript', js);
+SyntaxHighlighter.registerLanguage('python', python);
+SyntaxHighlighter.registerLanguage('go', go);
+
 
 function codeRenderer(props) {
     return (

@@ -66,7 +66,7 @@ export default function ArticleList() {
     return loading || (
         <List
             itemLayout="vertical"
-            size="middle"
+            size="big"
             pagination={{
             onChange: page => {
                 console.log(page);

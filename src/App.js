@@ -13,10 +13,16 @@ import LeftSider from './components/sider/Sider';
 import Article from './components/article/Article';
 import ArticleList from './components/article/ArticleList';
 
-const { Content, Footer } = Layout;
+const { Content } = Layout;
 const contentStyle = {
   background: "#fff",
   padding: 24,
+}
+
+const layoutStyle = {
+  margin: "auto",
+  maxWidth: 1125,
+  minHeight: "calc(100vh - 100px)"
 }
 
 // const pageHeight = document.body.clientHeight
@@ -46,8 +52,8 @@ function NoMatch() {
 function App() {
   return (
     <Router>
-      <Nav style={{  }} />
-      <Layout style={{ margin: "auto", maxWidth: 1125 }} >
+      <Nav />
+      <Layout style={ layoutStyle } >
         <LeftSider/>
         <Content style={ contentStyle } >
           <Switch>
@@ -67,7 +73,9 @@ function App() {
           </Switch>
         </Content>
       </Layout>
-      <div style={{ textAlign: 'center' }}>版权所有 ©️ 京ICP备19010859号-1</div>
+      <div style={{ textAlign: 'center', padding: 10 }}>
+        版权所有 <span role="img" aria-label="Copyright">©️</span> 京ICP备19010859号-1
+      </div>
 
 
     </Router>
