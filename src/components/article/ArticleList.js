@@ -24,19 +24,28 @@ function ListItem(props) {
     let itemStyle = {
         borderBottom: "1px solid #e8e8e8",
         margin: "0px",
-        height: "200px",
+        height: "170px",
         boxSizing: "border-box",
         padding: "10px",
         color: "#666",
+        transition: '0.3s',
+        margin: 20,
+    }
+    const [hover, setHover] = useState(false);
+    if (hover) {
+        itemStyle["boxShadow"] = "0px 3px 20px -8px rgba(0,0,0,0.75)"
     }
     let item = props.item
     return (
-        <div style={itemStyle} >
+        <Link to={item.href}>
+
+        <div style={itemStyle}
+            onMouseEnter={()=>setHover(true)} 
+            onMouseLeave={()=>setHover(false)}>
+            
             <Row>
                 <Col span={18}>
-                    <Link to={item.href}>
                         <Title level={3} style={{margin: 0}}>{ item.title }</Title>
-                    </Link>
                 </Col> 
                 <Col span={6} style={{textAlign: "right"}}>
                     <ClockCircleOutlined />
@@ -47,7 +56,10 @@ function ListItem(props) {
             <Paragraph type="secondary" ellipsis={{ rows: 3}} style={{marginTop: 10}}>
                 { item.description }
             </Paragraph>
+
         </div>
+        </Link>
+
     );   
 }
 
