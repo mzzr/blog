@@ -42,8 +42,10 @@ def main():
         lines = article.readlines()
         for line in lines:
             if line == "\n": continue
-            if "Tags:" in line or "tags:" in line :
-                meta["tags"] = re.split("[,，]", line.split(":")[1].strip())
+            if "tags" not in meta and (
+                "Tags:" in line or "tags:" in line 
+                or "Tags：" in line or "tags：" in line):
+                meta["tags"] = re.split("[,，]", re.split("[:：]", line)[1].strip())
                 meta["tags"] = list(map(str.strip, meta["tags"]))
                 continue
             # set second non-empty&no-tag line as description
@@ -74,7 +76,7 @@ def main():
     json.dump(articleList, open("public/articles.json", "w"))
 
     # rebuild react project
-    os.system("npm run build")
+    # os.system("npm run build")
 
 
 if __name__ == "__main__": 

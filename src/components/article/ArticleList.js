@@ -44,7 +44,7 @@ function ListItem(props) {
                 </Col>
             </Row>
             <TagList tags={item.tags} />
-            <Paragraph type="secondary" ellipsis={{ rows: 4}} style={{marginTop: 10}}>
+            <Paragraph type="secondary" ellipsis={{ rows: 3}} style={{marginTop: 10}}>
                 { item.description }
             </Paragraph>
         </div>
@@ -75,7 +75,7 @@ export default function ArticleList() {
             onChange: page => {
                 console.log(page);
             },
-            pageSize: 3,
+            pageSize: 5,
             }}
             split={true}
             dataSource={data}
