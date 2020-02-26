@@ -24,7 +24,7 @@ function ListItem(props) {
     let itemStyle = {
         borderBottom: "1px solid #e8e8e8",
         margin: "0px",
-        height: "170px",
+        height: "180px",
         boxSizing: "border-box",
         padding: "10px",
         color: "#666",
