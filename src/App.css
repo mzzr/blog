@@ -12,3 +12,13 @@
 #root {
   padding-left: calc(100vw - 100%); 
 }
+
+.show{
+  opacity: 1;
+  transition: all 1s ease-in;
+}
+
+.hide{
+  opacity: 0;
+  margin-top: 200px;
+}

@@ -63,6 +63,7 @@ export default function Article() {
     const { id } = useParams();
     const [data, setData] = useState();
     const [loading, setLoading] = useState(true);
+    const [show, setShow] = useState(false)
 
     useEffect(() => {
         fetch(process.env.PUBLIC_URL + '/articles/' + id + '.md')
@@ -70,6 +71,7 @@ export default function Article() {
         .then(data => {
             setData(data);
             setLoading(false);
+            setTimeout(() => setShow(true), 0)
         });
     }, [id])
 
@@ -79,6 +81,7 @@ export default function Article() {
         return (
             <div>
                 <ReactMarkdown 
+                    className={show?"show":"hide"}
                     source={data}
                     renderers={{
                         code: codeRenderer,

@@ -9,7 +9,7 @@ export default function LeftSider() {
     return (
         <Sider breakpoint="lg" trigger={null} collapsedWidth="0" width={300} style={{ background: '#fff' }}>
             <Card
-                style={{ width: 250, margin: 30 }}
+                style={{ width: 250, margin: 30, boxShadow: "10px 3px 20px -8px rgba(0,0,0,0.2)" }}
                 cover={
                 <img
                     alt="example"
@@ -17,14 +17,14 @@ export default function LeftSider() {
                 />
                 }
                 actions={[
-                <GithubOutlined style={iconStyle} onClick={() => window.open('https://github.com/mzzr')} />,
-                <FacebookOutlined style={iconStyle} />,
-                <MailOutlined style={iconStyle} onClick={() => window.open('mailto:0xmzzr@gmail.com')} />,
+                    <GithubOutlined style={iconStyle} onClick={() => window.open('https://github.com/mzzr')} />,
+                    <FacebookOutlined style={iconStyle} />,
+                    <MailOutlined style={iconStyle} onClick={() => window.open('mailto:0xmzzr@gmail.com')} />,
                 ]}
             >
                 <Meta
                 title="Rui Miao"
-                description="No description yet."
+                description="事情太多，时间太少。"
                 />
             </Card>
         </Sider>

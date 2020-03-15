@@ -73,7 +73,7 @@ def main():
             break
     else:
         articleList = [meta] + articleList
-    json.dump(articleList, open("public/articles.json", "w"))
+    json.dump(articleList, open("public/articles.json", "w"), ensure_ascii=False)
 
     # rebuild react project
     # os.system("npm run build")

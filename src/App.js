@@ -12,6 +12,7 @@ import Nav from './components/nav/Nav';
 import LeftSider from './components/sider/Sider';
 import Article from './components/article/Article';
 import ArticleList from './components/article/ArticleList';
+import { TagContextWrapper } from './components/tag/tag';
 
 const { Content } = Layout;
 const contentStyle = {
@@ -59,7 +60,9 @@ function App() {
           <Switch>
             <Redirect exact from='/' to='/blog'/>
             <Route exact path="/blog">
-              <ArticleList />
+              <TagContextWrapper>
+                <ArticleList />
+              </TagContextWrapper>
             </Route>
             <Route exact path="/blog/:id">
               <Article />
