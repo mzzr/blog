@@ -18,15 +18,22 @@ export const tagReducer = (state, action) => {
             const index = activeList.indexOf(tag) 
             if ( index > -1) {
                 activeList.splice(index, 1)
+                if (tag === "全部") activeList = []
                 return {...state, activeList}
             } else {
                 activeList.push(tag)
+                if (tag === "全部") activeList = [...tagList].splice(0, tagList.length-1)
                 return {...state, activeList}
             }
         case ADD_TAG:
             if (tagList.indexOf(tag) === -1) {
                 colorMap[tag] = colorList[tagList.length]
-                tagList.push(tag)
+                // keep "Draft" tag to the end
+                if (tagList.indexOf("Draft") !== -1) {
+                    tagList.splice(tagList.length-1, 0, tag)
+                } else {
+                    tagList.push(tag)
+                }
                 if (tag !== "Draft") // Default set "Draft" tag inactive
                     activeList.push(tag)
                 return {...state, activeList, tagList}
@@ -79,7 +86,7 @@ export const ArticleTagList = (props) => {
 }
 
 export const TagContextWrapper = (props) => {
-    const initialState = {tagList: [], activeList: [], colorMap: {}}
+    const initialState = {tagList: ["全部"], activeList: ["全部"], colorMap: {"全部": "#f5b1aa"}}
     const [state, dispatch] = useReducer(tagReducer, initialState)
     return (
         <TagContext.Provider value={{state, dispatch}}>

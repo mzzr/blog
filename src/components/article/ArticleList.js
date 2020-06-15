@@ -108,7 +108,7 @@ export default function ArticleList() {
                     onChange: page => {
                         console.log(page);
                     },
-                    pageSize: 5,
+                    pageSize: 10,
                     }}
                     split={true}
                     dataSource={filterData}

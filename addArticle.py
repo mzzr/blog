@@ -1,3 +1,4 @@
+ # -*- coding: utf-8 -*-
 import os
 import sys
 import json
@@ -32,13 +33,13 @@ def parseImg(line):
 
 
 def main():
-    articleList = json.load(open("public/articles.json"))
+    articleList = json.load(open("public/articles.json", encoding="utf-8"))
     output = []
     meta = {}
     articlePath = sys.argv[1]
 
     # parse markdown file
-    with open(articlePath) as article:
+    with open(articlePath, encoding="utf-8") as article:
         lines = article.readlines()
         for line in lines:
             if line == "\n": continue
@@ -59,7 +60,7 @@ def main():
     # save markdown file
     mdDesDir = os.path.abspath('public/articles')
     mdFileName = os.path.basename(articlePath)
-    with open(os.path.join(mdDesDir, mdFileName), "w") as fout:
+    with open(os.path.join(mdDesDir, mdFileName), "w", encoding="utf-8") as fout:
         print(''.join(output), file=fout)
     
     # update meta data
@@ -73,7 +74,7 @@ def main():
             break
     else:
         articleList = [meta] + articleList
-    json.dump(articleList, open("public/articles.json", "w"), ensure_ascii=False)
+    json.dump(articleList, open("public/articles.json", "w", encoding="utf-8"), ensure_ascii=False)
 
     # rebuild react project
     # os.system("npm run build")
